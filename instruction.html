@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>AgriBloom</title>
+
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      
+      margin: 0;
+      background-repeat: no-repeat;
+         background-size: cover;
+         background-attachment: fixed;
+          background-position: center;
+        background-image: url(images/bg.jpeg);
+    }
+
+   header {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.516) 30%, transparent 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: black;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+    .nav-left a,
+    .nav-right a {
+      margin: 0 1rem;
+      font-weight: normal;
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-right {
+      display: flex;
+      gap: 1.5rem; 
+        margin-right: 1rem; 
+      align-items: center;
+    }
+.nav-right button {
+      background-color: rgba(20, 149, 46, 0.441);
+      
+      border:2px solid #0a8020c1;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 16px;
+      cursor: pointer;
+      
+    }
+
+
+    .nav-right button:hover {
+      background-color: #4CAF50;
+    }
+
+    .nav-right button a {
+      color: #e0e4e0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-right button:hover a {
+      color: #369144;
+    }
+
+      .nav-left img {
+      height: 89px;
+     
+       width: 80px;
+      vertical-align: middle;
+    }
+
+    .header-wrapper {
+      position: relative;
+    }
+
+    #seasons-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      display: none;
+      padding: 20px;
+      
+      animation: slideDown 0.4s ease-in-out;
+      background-color: transparent;
+      text-align: center;
+      
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .season-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .season-button:hover {
+      background-color: #369144;
+    }
+
+    .main-container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: 20px auto;
+      background-color: white;
+      margin-bottom: 0.1em;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .main-container p {
+      font-size: 18px;
+      line-height: 1.9;
+      font-style: normal;
+      word-spacing: 0.5em;
+      color: #333;
+    }
+
+    .main-container p:first-child {
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    /* Modal styles */
+    #login-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid #888;
+      width: 300px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .close-btn {
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    .close-btn:hover {
+      color: red;
+    }
+
+    .modal-content input[type="text"],
+    .modal-content input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-content button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .modal-content button:hover {
+      background-color: #369144;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+    }
+
+    .faq-container {
+      max-width: 900px;
+    
+      margin: auto;
+    }
+
+    .faq-item {
+      background: #fff;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      position: relative;
+      background: #ecf5ff;
+    }
+
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      font-size: 20px;
+    }
+
+    .faq-question.active::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      padding: 20px;
+      display: none;
+      color: #333;
+      background: #fafafa;
+      line-height: 1.6;
+    }
+      .tool-image {
+  width: 800px;       /* or any value you prefer */
+  height: 300px;
+  margin-top: 10px;
+  border-radius: 8px;
+  object-fit: cover;  /* Makes the image fit nicely inside the box */
+}
+
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <header>
+      <nav class="nav-left">
+        <img src="images/logoipsum-374.png" alt="Logo" class="logo" />
+        <a href="A1.html">Home</a>
+        <a id="season-toggle"> Season</a>
+        <a href="support.html"> Support</a>
+        <a  style="color: black;"href="instruction.html"> Instruction</a>
+         <a href="instrument.html"> Tools</a>
+      </nav>
+     <nav class="nav-right">
+        <div id="weather" style="color:black; font-size: 18px; margin-left: 1rem;"></div>
+      
+        <button><a href="#"><i class="fa-solid fa-user" style="color: #092326;"></i></i> <span style="font-size: large;color: black;">user</span></a></button>
+      </nav>
+    </header>
+
+    <section id="seasons-container">
+      <button class="season-button"onclick="location.href='spring.html'">Spring</button>
+      <button class="season-button"  onclick="location.href='summer.html'">Summer</button>
+      <button class="season-button" onclick="location.href='monsoon.html'">Monsoon</button>
+      <button class="season-button" onclick="location.href='autumn.html'">Autumn</button>
+      <button class="season-button" onclick="location.href='prewinter.html'">Pre-Winter</button>
+      <button class="season-button" onclick="location.href='winter.html'">Winter</button>
+      <button class="season-button" onclick="location.href='postwinter.html'">Post-Winter</button>
+    </section>
+  </div>
+
+  <br><br><br><br><br>
+
+  <div class="main-container">
+    <section class="welcome-section" style="padding: 2rem; font-family: Arial, sans-serif; line-height: 1.8; background-color: white; color: #333;">
+   <h1>Crop Growing Instructions</h1>
+  <div class="faq-container">
+
+    <div class="faq-item">
+      <div class="faq-question">How to grow Cotton?</div>
+      <div class="faq-answer">
+          <img src="images/cotton.webp" alt="Cotton" class="tool-image"><br><br>
+        <strong>1. Soil Preparation:</strong> Cotton grows well in black, loamy, or alluvial soil with good drainage. Plow the land 2–3 times and apply organic manure.<br><br>
+        <strong>2. Sowing:</strong> Sow cotton seeds between April and May when the temperature is warm. Ensure row spacing of about 75–90 cm and 25–30 cm between plants.<br><br>
+        <strong>3. Irrigation:</strong> Provide irrigation every 15–20 days. Avoid water stagnation. Reduce watering after flowering to encourage boll opening.<br><br>
+        <strong>4. Pest & Disease Management:</strong> Use pheromone traps and organic pesticides to prevent bollworms and aphids. Crop rotation also helps.<br><br>
+        <strong>5. Harvesting:</strong> Harvest cotton when bolls burst open and turn white. Pick in dry weather and store in a clean, dry place.<br><br>
+        <strong>6. Common Pests:</strong> Bollworm, Aphids, Whiteflies<br><br>
+        <strong>7. Artificial Nutrients:</strong> Nitrogen (Urea), Potassium Sulphate, Phosphorus (DAP)
+  </details>
+    </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How to grow Rice?</div>
+      <div class="faq-answer">
+         <img src="images/rice.jpeg" alt="Rice" class="tool-image"><br><br>
+        <strong>1. Soil & Climate:</strong> Rice grows best in clay or loamy soil with good water-holding capacity. It needs a tropical climate with high humidity.<br><br>
+        <strong>2. Nursery Preparation:</strong> Sow seeds in a raised nursery bed. Prepare the field by puddling and leveling it for transplanting.<br><br>
+        <strong>3. Transplanting:</strong> After 25–30 days, transplant seedlings into the main field with 15 cm spacing.<br><br>
+        <strong>4. Water Management:</strong> Maintain 2–5 cm standing water in the field. Drain before harvest.<br><br>
+        <strong>5. Harvesting:</strong> Harvest rice when grains are firm and golden. Dry thoroughly before storage.<br><br>
+        <strong>6. Common Pests:</strong> Rice Stem Borer, Leaf Folder, Brown Planthopper<br><br>
+        <strong>7. Artificial Nutrients:</strong> Urea, Super Phosphate, Muriate of Potash
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How to grow Sugarcane?</div>
+      <div class="faq-answer">
+         <img src="images/sugar.webp" alt="Sugar" class="tool-image"><br><br>
+        <strong>1. Soil Preparation:</strong> Sugarcane needs well-drained loamy soil enriched with organic matter. Plow the field deeply and level it.<br><br>
+        <strong>2. Planting:</strong> Use healthy 2–3 bud stem cuttings. Plant them in furrows at 75–100 cm row spacing. Time: February to March or September to October.<br><br>
+        <strong>3. Irrigation:</strong> Regular irrigation is vital, especially during early growth and dry spells. Avoid waterlogging.<br><br>
+        <strong>4. Fertilization:</strong> Apply compost, nitrogen, phosphorus, and potassium fertilizers. Earth up after 2 months.<br><br>
+        <strong>5. Harvesting:</strong> Harvest after 10–12 months when canes are mature, hard, and sugary. Cut close to the ground for high juice recovery.<br><br>
+        <strong>6. Common Pests:</strong> Early Shoot Borer, Top Shoot Borer, White Grubs<br><br>
+        <strong>7. Artificial Nutrients:</strong> Urea, Phosphate, Potash, Zinc Sulphate</b>
+    </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How to grow Tomato?</div>
+      <div class="faq-answer">
+           <img src="images/tomato.jpeg" alt="Tomato" class="tool-image"><br><br>
+        <strong>1. Soil & Season:</strong> Tomato thrives in well-drained loamy soil rich in organic matter. Sow in early summer or post-monsoon.<br><br>
+        <strong>2. Seedling Preparation:</strong> Grow seedlings in nursery trays or seedbeds. Transplant after 25–30 days when 3–4 leaves appear.<br><br>
+        <strong>3. Transplanting:</strong> Keep 60 cm between rows and 45 cm between plants. Water immediately after planting.<br><br>
+        <strong>4. Care & Management:</strong> Stake the plants for support. Apply mulch and use drip irrigation. Remove weeds regularly.<br><br>
+        <strong>5. Harvesting:</strong> Harvest tomatoes when fully red and firm. Avoid over-ripening on the plant for longer shelf life.<br><br>
+        <strong>6. Common Pests:</strong> Fruit Borer, Whitefly, Thrips<br><br>
+        <strong>7. Artificial Nutrients:</strong> Calcium Nitrate, NPK 19:19:19, Micronutrient mix
+    </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How to grow Maize?</div>
+      <div class="faq-answer">
+         <img src="images/maize.webp" alt="Maize" class="tool-image"><br><br>
+        <strong>1. Soil Requirements:</strong> Maize grows best in well-drained fertile loamy soil with good organic content. pH range: 6.0–7.5.<br><br>
+        <strong>2. Sowing:</strong> Plant seeds in rows 60–75 cm apart, spacing 20–25 cm between seeds. Ideal sowing time: June–July or January–February.<br><br>
+        <strong>3. Irrigation:</strong> Irrigate at key stages: germination, flowering, and grain filling. Avoid overwatering.<br><br>
+        <strong>4. Fertilizer Use:</strong> Apply compost and nitrogen-rich fertilizer. Top-dress with urea during growth.<br><br>
+        <strong>5. Harvesting:</strong> Harvest when husks dry and kernels harden. Dry the cobs properly before storing or shelling.<br><br>
+        <strong>6. Common Pests:</strong> Fall Armyworm, Stem Borer, Corn Earworm<br><br>
+        <strong>7. Artificial Nutrients:</strong> Urea, DAP, Potassium Nitrate
+    </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">How to grow Onion?</div>
+      <div class="faq-answer">
+          <img src="images/onion.webp" alt="Onion" class="tool-image"><br><br>
+        <strong>1. Soil & Climate:</strong> Onion requires loose, well-drained sandy loam soil. Best grown in cool weather for bulb formation.<br><br>
+        <strong>2. Nursery & Transplanting:</strong> Sow seeds in nursery beds and transplant after 6 weeks when 15 cm tall. Keep 10–15 cm between plants.<br><br>
+        <strong>3. Irrigation:</strong> Provide light watering at regular intervals. Avoid water stagnation, especially near maturity.<br><br>
+        <strong>4. Fertilization:</strong> Use compost, phosphorus, and potassium fertilizers. Top-dress with urea during bulb formation.<br><br>
+        <strong>5. Harvesting:</strong> When tops fall and turn yellow, stop irrigation. Harvest after 7–10 days. Cure onions under shade and store in a dry, airy place.<br><br>
+        <strong>6. Common Pests:</strong> Onion Thrips, Onion Maggot, Leafminers<br><br>
+        <strong>7. Artificial Nutrients:</strong> DAP, MOP (Muriate of Potash), Sulphur
+    </div>
+    </div>
+
+  </div></section>
+  </div>
+<!-- Font Awesome CDN (include in <head> if not already added) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Stylish Footer with #cfe7dc Background -->
+<footer style="background-color: #cfe7dc; color: #1e2f27; padding: 40px 20px; text-align: center; font-family: 'Segoe UI', sans-serif; border-top-left-radius: 30px; border-top-right-radius: 30px; box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2); margin-top: 60px;">
+
+    <h2 style="margin-bottom: 10px; font-size: 22px; color: #145c44;">AgriBloom India</h2>
+    <p style="font-size: 15px; color: #2e4c40;">Empowering farmers with soil-based crop guidance</p>
+
+    <p style="margin: 20px 0 10px; font-size: 15px;">
+        <a href="mailto:info@agribloom.in" style="color: #064d3c; text-decoration: none;">info@agribloom.in</a> |
+        <span style="color: #064d3c;">+91-9876543210</span>
+    </p>
+<div style="margin-top: 20px;">
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-youtube"></i>
+    </a>
+</div>
+
+
+
+    <p style="margin-top: 30px; font-size: 14px; color: #2e4c40;">
+        © 2025 AgriBloom India. All Rights Reserved.
+    </p>
+</footer>
+
+
+  
+
+  <script>
+    const toggleBtn = document.getElementById('season-toggle');
+    const seasonsSection = document.getElementById('seasons-container');
+
+    toggleBtn.addEventListener('click', () => {
+      seasonsSection.style.display = seasonsSection.style.display === 'block' ? 'none' : 'block';
+    });
+
+  
+const apiKey = '640aae38d9fa4106bc03f5b5431b1eca';
+
+async function fetchWeather(lat, lon) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+    );
+    const data = await response.json();
+    const temp = data.main.temp;
+    const city = data.name;
+
+    document.getElementById('weather').innerHTML = `🌤️ ${city}: ${temp}°C`;
+  } catch (error) {
+    document.getElementById('weather').innerHTML = "🌐 Weather info not available";
+  }
+}
+
+function getLocationAndFetchWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        fetchWeather(lat, lon);
+      },
+      () => {
+        document.getElementById('weather').innerHTML = "📍 Location access denied";
+      }
+    );
+  } else {
+    document.getElementById('weather').innerHTML = "📍 Geolocation not supported";
+  }
+}
+
+getLocationAndFetchWeather();
+ const questions = document.querySelectorAll('.faq-question');
+    questions.forEach(q => {
+      q.addEventListener('click', () => {
+        q.classList.toggle('active');
+        const answer = q.nextElementSibling;
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+      });
+    });
+  </script>
+</body>
+</html>

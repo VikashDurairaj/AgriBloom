@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>AgriBloom</title>
+
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      
+      margin: 0;
+      background-repeat: no-repeat;
+         background-size: cover;
+         background-attachment: fixed;
+          background-position: center;
+        background-image: url(images/bg.jpeg);
+   
+    }
+
+      header {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.516) 30%, transparent 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: black;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+    .nav-left a,
+    .nav-right a {
+      margin: 0 1rem;
+      font-weight: normal;
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-right {
+      display: flex;
+        gap: 1.5rem; 
+        margin-right: 1rem; 
+      align-items: center;
+    }
+.nav-right button {
+      background-color: rgba(20, 149, 46, 0.441);
+      
+      border:2px solid #0a8020c1;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 16px;
+      cursor: pointer;
+      
+    }
+
+.nav-right button:hover {
+  background-color: #4CAF50;
+}
+
+.nav-right button a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-right button:hover a {
+  color: white;
+}
+
+      .nav-left img {
+      height: 89px;
+     
+       width: 80px;
+      vertical-align: middle;
+    }
+.header-wrapper {
+  position: relative;
+}
+ #seasons-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      display: none;
+      padding: 20px;
+      
+      animation: slideDown 0.4s ease-in-out;
+      background-color: transparent;
+      text-align: center;
+      
+    }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: linear-gradient(145deg, #ffffff, #e8f5e9);
+  margin: 8% auto;
+  padding: 2.5rem 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  animation: slideUp 0.4s ease;
+}
+
+.modal-content h2 {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 1.5rem;
+}
+
+.modal-content label {
+  display: block;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.modal-content input[type="email"],
+.modal-content input[type="password"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s;
+}
+
+.modal-content input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 1.5rem;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-submit:hover {
+  background-color: #388e3c;
+}
+
+.modal-content p {
+  text-align: center;
+  margin-top: 1rem;
+  color: #444;
+}
+
+.modal-content p a {
+  color: #2e7d32;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.modal-content p a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0 }
+  to { transform: translateY(0); opacity: 1 }
+}
+.season-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .season-button:hover {
+      background-color: #369144;
+    }
+
+    button a {
+      color: rgb(251, 249, 249);
+      text-decoration: none;
+    }
+
+    /* Main container for welcome content */
+    .main-container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: 20px auto;
+      background-color: white;
+   margin-bottom: 0.1em;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .main-container p {
+      font-size: 18px;
+      line-height: 1.9;
+      font-style: normal;
+      word-spacing: 0.5em;
+      color: #333;
+    }
+
+    .main-container p:first-child {
+      font-weight: bold;
+      font-size: 22px;
+    }
+  </style>
+</head>
+<body>
+<div class="header-wrapper">
+  <header>
+    <nav class="nav-left">
+      <img src="images/logoipsum-374.png" alt="Logo" class="logo" />
+      <a href="A1.html">Home</a>
+      <a id="season-toggle"> Season</a>
+      <a href="support.html"> Support</a>
+      <a  style="color: black;"href="instruction.html"> Instruction</a>
+      <a href="instrument.html"> Tools</a>
+    </nav>
+     <nav class="nav-right">
+        <div id="weather" style="color:black; font-size: 18px; margin-left: 1rem;"></div>
+      
+        <button><a href="#"><i class="fa-solid fa-user" style="color: #092326;"></i></i> <span style="font-size: large;color: black;">user</span></a></button>
+      </nav>
+  </header>
+<!-- Login/Sign Up Modal -->
+<!-- Login/Sign Up Modal -->
+<div id="login-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" title="Close">&times;</span>
+    <h2><i class="fas fa-user-circle" style="margin-right: 10px;"></i>Log In / Sign Up</h2>
+    <form>
+      <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+
+      <label for="password"><i class="fas fa-lock"></i> Password:</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+
+     <button type="submit" class="login-submit">Log In</button>
+
+    </form>
+    <p>Don't have an account? <a href="#">Sign Up</a></p>
+  </div>
+</div>
+
+  <!-- Seasons Section -->
+  <section id="seasons-container">
+    <button class="season-button">Spring</button>
+    <button class="season-button">Summer</button>
+    <button class="season-button">Monsoon</button>
+    <button class="season-button">Autumn</button>
+    <button class="season-button">Pre-Winter</button>
+    <button class="season-button">Winter</button>
+    <button class="season-button">Post-Winter</button>
+  </section>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="login-message" style="display:none; position: fixed; top: 20px; right: 20px; background-color: #4BB543; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-family: sans-serif; z-index: 1000;">
+  Login successfully!
+</div>
+  <!-- Welcome Content Container -->
+ <div class="main-container" style="padding: 2rem; font-size: 18px; line-height: 3;">
+<section class="welcome-section" style="padding: 2rem; font-family: Arial, sans-serif; line-height: 1.8; background-color: white; color: #333;">
+ <h2 style="text-align: center; font-size: 1.7rem; color: #2e7d32;"> Welcome to <strong>AgriBloom</strong> – Where Farming Meets Innovation </h2>
+<p>
+  At <strong>AgriBloom</strong>, we believe that <em>farming is more than a profession</em> – it's a way of life, a tradition rooted in dedication, and the heartbeat of our nation. That’s why we’re here to walk beside you, supporting <strong>every farmer</strong> – from experienced cultivators to fresh new hands sowing their first seeds.
+</p>
+<p>
+  Our platform is thoughtfully crafted to guide you in choosing the <strong>right crops for your unique land</strong>. Because every patch of soil has its own story, and with the right knowledge, that story can bloom into success.
+</p>
+<p>
+  Whether you're dealing with <em>black soil under the summer sun</em> or <em>red earth bracing for monsoon rains</em>, AgriBloom analyzes your land's <strong>soil type, water availability, climate zone, and seasonal factors</strong> to recommend crops tailored for your conditions. We help you make informed decisions, reduce uncertainty, and grow with confidence.
+</p>
+<p>
+  But we don’t stop at just recommendations. AgriBloom offers <strong>step-by-step cultivation guides</strong> for commonly grown crops – covering everything from:
+</p>
+<ul style="margin-left: 1.5rem;">
+  <li> Land preparation</li>
+  <li> Seed selection</li>
+  <li> Watering schedules</li>
+  <li> Pest control</li>
+  <li> Harvesting techniques</li>
+</ul>
+<p>
+  You're never alone in your farming journey. Our goal is to equip you with the <strong>right knowledge at the right time</strong>.
+</p>
+<p>
+  And as seasons shift — from <em>Spring’s gentle breeze</em> to <em>Winter’s quiet calm</em> — we provide timely <strong>seasonal insights</strong> to help you adapt your strategy and thrive all year round.
+</p>
+<p>
+  Whether you're dealing with <em>black soil under the summer sun</em> or <em>red earth bracing the monsoon rains</em>, AgriBloom equips you with the seasonal insights, crop recommendations, and farming tools tailored to your conditions.
+</p>
+
+<h3 style="color: #2e7d32; font-size: 1.5rem;">Types of Soil We Support</h3>
+
+<div>
+  <h4>Alluvial Soil</h4>
+  <img src="images/alluvial soil.jpg" alt="Alluvial Soil" width="900">
+  <p>This fertile soil is ideal for growing crops like rice, wheat, sugarcane, and pulses. Commonly found in river basins.</p>
+</div>
+
+<div>
+  <h4>Black Soil</h4>
+  <img src="images/blacksoil.jpg" alt="Black Soil" width="900">
+  <p>Rich in minerals and moisture-retentive, perfect for cotton, sunflower, and soybean farming.</p>
+</div>
+
+<div>
+  <h4>Red Soil</h4>
+  <img src="images/redsoil.jpg" alt="Red Soil" width="900">
+  <p>Suitable for crops like groundnut, millet, and pulses. Common in areas with good rainfall.</p>
+</div>
+
+<div>
+  <h4>Laterite Soil</h4>
+  <img src="images/lateriate.jpg" alt="Laterite Soil" width="900">
+  <p>Best for crops such as tea, coffee, and cashew. Found in tropical regions with heavy rainfall.</p>
+</div>
+<p>
+  Join us as we cultivate a future where technology empowers tradition. Let’s sow the seeds of innovation together! 
+</p> 
+</section>
+
+
+
+</div>
+<!-- Font Awesome CDN (include in <head> if not already added) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Stylish Footer with #cfe7dc Background -->
+<footer style="background-color: #cfe7dc; color: #1e2f27; padding: 40px 20px; text-align: center; font-family: 'Segoe UI', sans-serif; border-top-left-radius: 30px; border-top-right-radius: 30px; box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2); margin-top: 60px;">
+
+    <h2 style="margin-bottom: 10px; font-size: 22px; color: #145c44;">AgriBloom India</h2>
+    <p style="font-size: 15px; color: #2e4c40;">Empowering farmers with soil-based crop guidance</p>
+
+    <p style="margin: 20px 0 10px; font-size: 15px;">
+        <a href="mailto:info@agribloom.in" style="color: #064d3c; text-decoration: none;">info@agribloom.in</a> |
+        <span style="color: #064d3c;">+91-9876543210</span>
+    </p>
+<div style="margin-top: 20px;">
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-youtube"></i>
+    </a>
+</div>
+<script>
+ const loginModal = document.getElementById('login-modal');
+  const closeBtn = document.querySelector('.close-btn');
+  const loginForm = loginModal.querySelector('form');
+  const loginMessage = document.getElementById('login-message');
+
+  // Open modal when any nav link is clicked
+  const navLinks = document.querySelectorAll('.nav-left a, .nav-right a');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent immediate navigation
+      loginModal.style.display = 'block';
+    });
+  });
+
+  // Close modal on X click
+  closeBtn.addEventListener('click', () => {
+    loginModal.style.display = 'none';
+  });
+
+  // Handle form submission
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    loginModal.style.display = 'none';
+    loginMessage.style.display = 'block';
+
+    // Hide success message and redirect after 2 seconds
+    setTimeout(() => {
+      loginMessage.style.display = 'none';
+      window.location.href = 'A1.html'; // Redirect to a1.html
+    }, 2000);
+  });
+
+  // Optional: Close modal when clicking outside it
+  window.onclick = function(event) {
+    if (event.target == loginModal) {
+      loginModal.style.display = "none";
+    }
+  };
+const apiKey = '640aae38d9fa4106bc03f5b5431b1eca';
+
+async function fetchWeather(lat, lon) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+    );
+    const data = await response.json();
+    const temp = data.main.temp;
+    const city = data.name;
+
+    document.getElementById('weather').innerHTML = `🌤️ ${city}: ${temp}°C`;
+  } catch (error) {
+    document.getElementById('weather').innerHTML = "🌐 Weather info not available";
+  }
+}
+
+function getLocationAndFetchWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        fetchWeather(lat, lon);
+      },
+      () => {
+        document.getElementById('weather').innerHTML = "📍 Location access denied";
+      }
+    );
+  } else {
+    document.getElementById('weather').innerHTML = "📍 Geolocation not supported";
+  }
+}
+
+getLocationAndFetchWeather();
+
+
+</script>
+
+
+</body>
+</html>

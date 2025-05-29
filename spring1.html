@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>AgriBloom</title>
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #e5fbff;
+       height: 100%;
+      margin: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem;
+      background: rgb(69, 196, 105);
+    }
+
+    .nav-left a,
+    .nav-right a {
+      margin: 0 1rem;
+      font-weight: normal;
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-right button {
+      background-color: #4CAF50;
+      color: #4CAF50;
+      border: 2px solid #4CAF50;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav-right button a {
+      color: #e0e4e0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-right button:hover a {
+      color: #369144;
+    }
+
+    .nav-left img {
+      height: 30px;
+       width: auto;
+      vertical-align: middle;
+    }
+
+    .header-wrapper {
+      position: relative;
+    }
+
+    #seasons-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      display: none;
+      padding: 20px;
+      animation: slideDown 0.4s ease-in-out;
+      background-color: #c5fbd4;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .season-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .season-button:hover {
+      background-color: #369144;
+    }
+
+    .main-container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: 20px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .soil-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .soil-buttons button {
+      background: linear-gradient(135deg, #4CAF50, #2e7d32);
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .soil-buttons button:hover {
+      background: linear-gradient(135deg, #2e7d32, #66bb6a);
+      transform: translateY(-3px);
+    }
+
+    #soil-info-container {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: #f3f3f3;
+      border-radius: 10px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #soil-title {
+      color: #2e7d32;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #soil-content {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <header>
+      <nav class="nav-left">
+        <img src="logoipsum-374.png" alt="Logo" class="logo" />
+        <a href="A1.html"><i class="fas fa-house"></i>&ensp;Home</a>
+        <a id="season-toggle">🍂 Season</a>
+        <a href="support.html">🛠️ Support</a>
+      </nav>
+      <nav class="nav-right">
+        <div id="weather" style="color:white; font-size: 18px; margin-left: 1rem;"></div>
+        <a href="#">❤️</a>
+        <a href="#">🛒</a>
+        <button><a href="#">👤 <span style="font-size: large;">user</span></a></button>
+      </nav>
+    </header>
+
+    <section id="seasons-container">
+      <button class="season-button" onclick="location.href='spring.html'">Spring</button>
+      <button class="season-button">Summer</button>
+      <button class="season-button">Monsoon</button>
+      <button class="season-button">Autumn</button>
+      <button class="season-button">Pre-Winter</button>
+      <button class="season-button">Winter</button>
+      <button class="season-button">Post-Winter</button>
+    </section>
+  </div>
+
+  <div class="main-container">
+    <h2 style="color: #4CAF50; text-align: center;">Select Your Soil Type (Spring)</h2>
+    <div class="soil-buttons">
+      <button onclick="showAlluvialInfo()">Alluvial</button>
+      <button onclick="showBlackInfo()">Black Soil</button>
+      <button onclick="showRedInfo()">Red Soil</button>
+      <button onclick="showLateriteInfo()">Laterite Soil</button>
+    </div>
+
+    <div id="soil-info-container">
+      <h2 id="soil-title"></h2>
+      <p id="soil-content"></p>
+    </div>
+  </div>
+
+  <script>
+    // Toggle Season dropdown
+    const toggleBtn = document.getElementById('season-toggle');
+    const seasonsSection = document.getElementById('seasons-container');
+    toggleBtn.addEventListener('click', () => {
+      seasonsSection.style.display = seasonsSection.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Weather API
+    const apiKey = '640aae38d9fa4106bc03f5b5431b1eca';
+    const city = 'Chennai';
+
+    async function fetchWeather() {
+      try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+        const data = await response.json();
+        const temp = data.main.temp;
+        document.getElementById('weather').innerHTML = `🌤️ ${city}: ${temp}°C`;
+      } catch (error) {
+        document.getElementById('weather').innerHTML = "🌐 Weather info not available";
+      }
+    }
+
+    fetchWeather();
+
+    // Soil Info Functions
+    function showAlluvialInfo() {
+      document.getElementById('soil-title').innerText = "Alluvial Soil";
+      document.getElementById('soil-content').innerHTML = `
+       <h2>About Alluvial Soil in India:</h2>
+        <p>Found mostly in river basins like the Ganges, Brahmaputra, and Indus plains.</p>
+        <p>Fertile, good moisture retention but well-drained.</p>
+        <p>Suitable for a wide range of crops.</p>
+
+        <h3>Plants Suitable for Spring Season in Alluvial Soil (With Water Requirements)</h3>
+
+        <h4>1. High Water Requirement Plants</h4>
+        <ul>
+            <li>Rice (early varieties for spring planting)</li>
+            <li>Sugarcane</li>
+            <li>Tomato</li>
+            <li>Brinjal (Eggplant)</li>
+            <li>Cucumber</li>
+            <li>Cauliflower</li>
+            <li>Cabbage</li>
+            <li>Spinach</li>
+            <li>Mustard</li>
+            <li>Watermelon</li>
+            <li>Muskmelon</li>
+        </ul>
+
+        <h4>2. Medium Water Requirement Plants</h4>
+        <ul>
+            <li>Wheat (late sown in spring in some regions)</li>
+            <li>Maize (corn)</li>
+            <li>Green peas</li>
+            <li>Beans (French beans, cluster beans)</li>
+            <li>Carrots</li>
+            <li>Onion</li>
+            <li>Garlic</li>
+            <li>Potato</li>
+        </ul>
+
+        <h4>3. Low Water Requirement Plants</h4>
+        <ul>
+            <li>Millets (like bajra, jowar - if planted late spring)</li>
+            <li>Chickpea (gram)</li>
+            <li>Lentils (Masoor dal)</li>
+            <li>Fenugreek (Methi)</li>
+            <li>Herbs like mint and coriander</li>
+        </ul>
+      `;
+    }
+
+    function showBlackInfo() {
+      document.getElementById('soil-title').innerText = "Black Soil";
+      document.getElementById('soil-content').innerHTML = `
+        Rich in minerals like calcium and potassium.<br>
+        Best for cotton, sunflower, and maize.<br>
+        Retains moisture well and cracks in summer for aeration.
+      `;
+    }
+
+    function showRedInfo() {
+      document.getElementById('soil-title').innerText = "Red Soil";
+      document.getElementById('soil-content').innerHTML = `
+        Rich in iron content and slightly acidic.<br>
+        Suitable for crops like groundnut, millets, and pulses.<br>
+        Requires fertilizers for better yield.
+      `;
+    }
+
+    function showLateriteInfo() {
+      document.getElementById('soil-title').innerText = "Laterite Soil";
+      document.getElementById('soil-content').innerHTML = `
+        Formed in high rainfall areas with alternate wet and dry periods.<br>
+        Good for crops like tea, coffee, and cashew.<br>
+        Needs proper management and fertilizers.
+      `;
+    }
+  </script>
+</body>
+</html>

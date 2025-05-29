@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>AgriBloom</title>
+  <style>
+    * {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      
+       height: 100%;
+       background-repeat: no-repeat;
+         background-size: cover;
+         background-attachment: fixed;
+          background-position: center;
+        background-image: url(images/bg.jpeg);
+      margin: 0;
+    }
+
+      header {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.516) 30%, transparent 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: black;
+  padding: 1rem 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+    .nav-left a,
+    .nav-right a {
+      margin: 0 1rem;
+      font-weight: normal;
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-right {
+      display: flex;
+        gap: 1.5rem; 
+        margin-right: 1rem; 
+      align-items: center;
+    }
+
+    .nav-right button {
+      background-color: rgba(20, 149, 46, 0.441);
+      
+      border:2px solid #0a8020c1;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 16px;
+      cursor: pointer;
+      
+    }
+
+    .nav-right button a {
+      color: #e0e4e0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .nav-right button:hover a {
+      color: #369144;
+    }
+
+       .nav-left img {
+      height: 89px;
+     
+       width: 80px;
+      vertical-align: middle;
+    }
+
+    .header-wrapper {
+      position: relative;
+    }
+
+   #seasons-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      display: none;
+      padding: 20px;
+      
+      animation: slideDown 0.4s ease-in-out;
+      background-color: transparent;
+      text-align: center;
+      
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .season-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .season-button:hover {
+      background-color: #369144;
+    }
+
+    .main-container {
+      padding: 30px;
+      max-width: 1000px;
+         margin: 120px auto 20px auto;
+
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .soil-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .soil-buttons button {
+      background: linear-gradient(135deg, #4CAF50, #2e7d32);
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .soil-buttons button:hover {
+      background: linear-gradient(135deg, #2e7d32, #66bb6a);
+      transform: translateY(-3px);
+    }
+
+    #soil-info-container {
+      margin-top: 30px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      max-width: 900px;
+      margin-left: 20px;
+      margin-right: auto;
+    }
+
+    #soil-title {
+      color: #2e7d32;
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    #soil-content {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+       .tool-image {
+  width: 940px;       /* or any value you prefer */
+  height: 400px;
+  margin-top: 10px;
+  border-radius: 8px;
+  object-fit: cover;  /* Makes the image fit nicely inside the box */
+}
+  </style>
+</head>
+<body>
+  <div class="header-wrapper">
+    <header>
+      <nav class="nav-left">
+        <img src="images/logoipsum-374.png" alt="Logo" class="logo" />
+        <a href="A1.html">Home</a>
+        <a id="season-toggle"> Season</a>
+        <a href="support.html"> Support</a>
+        <a  style="color: black;"href="instruction.html"> Instruction</a>
+         <a href="instrument.html"> Tools</a>
+      </nav>
+     <nav class="nav-right">
+        <div id="weather" style="color:black; font-size: 18px; margin-left: 1rem;"></div>
+      
+        <button><a href="#"><i class="fa-solid fa-user" style="color: #092326;"></i></i> <span style="font-size: large;color: black;">user</span></a></button>
+      </nav>
+    </header>
+
+    <section id="seasons-container">
+      <button class="season-button" onclick="location.href='spring.html'">Spring</button>
+      <button class="season-button" onclick="location.href='summer.html'">Summer</button>
+      <button class="season-button" onclick="location.href='monsoon.html'">Monsoon</button>
+      <button class="season-button" onclick="location.href='autumn.html'">Autumn</button>
+      <button class="season-button" onclick="location.href='prewinter.html'">Pre-Winter</button>
+      <button class="season-button" onclick="location.href='winter.html'">Winter</button>
+      <button class="season-button" onclick="location.href='postwinter.html'">Post-Winter</button>
+    </section>
+  </div>
+
+  <div class="main-container">
+     <img src="images/postwinter.jpg" alt="Post-Winter" class="tool-image"><br><br>
+    <h2 style="color: #4CAF50; text-align: center;">Select Your Soil Type (Post-Winter)</h2>
+    <div class="soil-buttons">
+      <button onclick="showAlluvialInfo()">Alluvial Soil</button>
+      <button onclick="showBlackInfo()">Black Soil</button>
+      <button onclick="showRedInfo()">Red Soil</button>
+      <button onclick="showLateriteInfo()">Laterite Soil</button>
+    </div>
+
+    <div id="soil-info-container">
+      <h2 id="soil-title"></h2>
+      <p id="soil-content"></p>
+    </div>
+  </div>
+<!-- Font Awesome CDN (include in <head> if not already added) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Stylish Footer with #cfe7dc Background -->
+<footer style="background-color: #cfe7dc; color: #1e2f27; padding: 40px 20px; text-align: center; font-family: 'Segoe UI', sans-serif; border-top-left-radius: 30px; border-top-right-radius: 30px; box-shadow: 0px -4px 12px rgba(0, 0, 0, 0.2); margin-top: 60px;">
+
+    <h2 style="margin-bottom: 10px; font-size: 22px; color: #145c44;">AgriBloom India</h2>
+    <p style="font-size: 15px; color: #2e4c40;">Empowering farmers with soil-based crop guidance</p>
+
+    <p style="margin: 20px 0 10px; font-size: 15px;">
+        <a href="mailto:info@agribloom.in" style="color: #064d3c; text-decoration: none;">info@agribloom.in</a> |
+        <span style="color: #064d3c;">+91-9876543210</span>
+    </p>
+<div style="margin-top: 20px;">
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-instagram"></i>
+    </a>
+    <a href="#" style="margin: 0 15px; color: #145c44; font-size: 20px; transition: color 0.3s;">
+        <i class="fab fa-youtube"></i>
+    </a>
+</div>
+  <script>
+    // Toggle Season dropdown
+    const toggleBtn = document.getElementById('season-toggle');
+    const seasonsSection = document.getElementById('seasons-container');
+    toggleBtn.addEventListener('click', () => {
+      seasonsSection.style.display = seasonsSection.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Weather API
+ const apiKey = '640aae38d9fa4106bc03f5b5431b1eca';
+
+async function fetchWeather(lat, lon) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`
+    );
+    const data = await response.json();
+    const temp = data.main.temp;
+    const city = data.name;
+
+    document.getElementById('weather').innerHTML = `🌤️ ${city}: ${temp}°C`;
+  } catch (error) {
+    document.getElementById('weather').innerHTML = "🌐 Weather info not available";
+  }
+}
+
+function getLocationAndFetchWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        fetchWeather(lat, lon);
+      },
+      () => {
+        document.getElementById('weather').innerHTML = "📍 Location access denied";
+      }
+    );
+  } else {
+    document.getElementById('weather').innerHTML = "📍 Geolocation not supported";
+  }
+}
+
+getLocationAndFetchWeather();
+
+    // Soil Info Functions
+    function showAlluvialInfo() {
+      document.getElementById('soil-title').innerText = "Alluvial Soil";
+      document.getElementById('soil-content').innerHTML = `
+ <h2>About Alluvial Soil in India:</h2>
+<p>Extensively found in the Indo-Gangetic plains covering Punjab, Haryana, Uttar Pradesh, Bihar, West Bengal, Assam, and parts of Odisha.</p>
+<p>Highly fertile, rich in potash and phosphoric acid, excellent moisture retention, ideal for a variety of crops including cereals, pulses, and vegetables.</p>
+
+<h3>Plants Suitable for Post-Winter Season in Alluvial Soil (With Water Requirements)</h3>
+
+<h4>1. High Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Cucumber</li>
+    <li>Bottle gourd</li>
+    <li>Muskmelon</li>
+    <li>Tomato</li>
+</ul>
+
+<h4>2. Medium Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Okra (Ladyfinger)</li>
+    <li>Cluster beans (Guar)</li>
+    <li>Pumpkin</li>
+    <li>French beans</li>
+</ul>
+
+<h4>3. Low Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Basil (Tulsi)</li>
+    <li>Amaranth</li>
+    <li>Dill</li>
+    <li>Chives</li>
+</ul>
+    `;
+    }
+
+    function showBlackInfo() {
+      document.getElementById('soil-title').innerText = "Black Soil";
+      document.getElementById('soil-content').innerHTML = `
+ <h2>About Black Soil in India:</h2>
+<p>Mainly found in Maharashtra, Madhya Pradesh, Gujarat, Andhra Pradesh, and Tamil Nadu.</p>
+<p>High moisture retention, rich in clay and nutrients, ideal for cotton, oilseeds, and dryland crops.</p>
+
+<h3>Plants Suitable for Post-Winter Season in Black Soil (With Water Requirements)</h3>
+
+<h4>1. High Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Watermelon</li>
+    <li>Sponge gourd (Luffa)</li>
+    <li>Tomato</li>
+    <li>Capsicum (Bell pepper)</li>
+</ul>
+
+<h4>2. Medium Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Sesame (Til)</li>
+    <li>Maize (Corn)</li>
+    <li>Brinjal (Eggplant)</li>
+    <li>Bitter gourd</li>
+</ul>
+
+<h4>3. Low Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Coriander (Dhaniya)</li>
+    <li>Fennel (Saunf)</li>
+    <li>Safflower (Kusum)</li>
+    <li>Caraway (Shah Jeera)</li>
+</ul>
+    `;
+    }
+
+    function showRedInfo() {
+      document.getElementById('soil-title').innerText = "Red Soil";
+      document.getElementById('soil-content').innerHTML = `
+<h2>About Red Soil in India:</h2>
+<p>Commonly found in Tamil Nadu, Karnataka, Andhra Pradesh, Odisha, and parts of Chhattisgarh and Maharashtra.</p>
+<p>Rich in iron oxide, well-drained and slightly acidic, but low in nitrogen and organic matter. Suitable for pulses, oilseeds, and drought-resistant vegetables.</p>
+
+<h3>Plants Suitable for Post-Winter Season in Red Soil (With Water Requirements)</h3>
+
+<h4>1. High Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Cucumber</li>
+    <li>Tomato</li>
+    <li>Bottle gourd</li>
+    <li>Snake gourd</li>
+</ul>
+
+<h4>2. Medium Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Okra (Ladyfinger)</li>
+    <li>Brinjal (Eggplant)</li>
+    <li>Cluster beans (Guar)</li>
+    <li>Pumpkin</li>
+</ul>
+
+<h4>3. Low Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Fenugreek (Methi)</li>
+    <li>Amaranthus</li>
+    <li>Chili</li>
+    <li>Dill</li>
+</ul>
+    `;
+    }
+
+    function showLateriteInfo() {
+      document.getElementById('soil-title').innerText = "Laterite Soil";
+      document.getElementById('soil-content').innerHTML = `
+ <h2>About Laterite Soil in India:</h2>
+<p>Predominantly found in Kerala, Karnataka, Tamil Nadu, Andhra Pradesh, Odisha, and West Bengal.</p>
+<p>Rich in iron and aluminum, acidic and porous, with good drainage but low in fertility. Requires organic enrichment. Ideal for plantation crops and select vegetables.</p>
+
+<h3>Plants Suitable for Post-Winter Season in Laterite Soil (With Water Requirements)</h3>
+
+<h4>1. High Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Watermelon</li>
+    <li>Bitter gourd</li>
+    <li>Sponge gourd (Luffa)</li>
+    <li>Ridge gourd</li>
+</ul>
+
+<h4>2. Medium Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Brinjal (Eggplant)</li>
+    <li>Okra (Ladyfinger)</li>
+    <li>French beans</li>
+    <li>Snake gourd</li>
+</ul>
+
+<h4>3. Low Water Requirement Plants</h4>
+<ul style="line-height: 2; margin-left: 20px;">
+    <li>Mint (Pudina)</li>
+    <li>Coriander</li>
+    <li>Chili</li>
+    <li>Sage</li>
+</ul>
+
+
+      `;
+    }
+  </script>
+</body>
+</html>
